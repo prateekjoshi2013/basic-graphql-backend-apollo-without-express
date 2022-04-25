@@ -32,6 +32,28 @@ const typeDefs=gql`
         INDIA
         GERMANY
         CHILE
-    }`
+    }
+    
+    input CreateUserInput {
+        name:String!
+        username:String!
+        age:Int = 18
+        nationality: Nationality = BRAZIL
+    }
+
+    input UpdateUserInput {
+        name:String!
+        username:String!
+        id:ID!
+    }
+
+    type Mutation {
+        createUser(input: CreateUserInput! ): User!
+        updateUser(input: UpdateUserInput): User!
+        deleteUser(id:ID!): User
+    }
+    
+    
+    `
 
 module.exports={typeDefs}
