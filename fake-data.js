@@ -1,4 +1,5 @@
- const UserList=[
+ const UserList=null
+ const UserList1=[
     {
         id:1,
         name:"John",
