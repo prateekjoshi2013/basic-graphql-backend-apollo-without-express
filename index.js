@@ -4,7 +4,10 @@ const {resolvers}=require("./schema/resolvers")
 
 const server=new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    context: ({req})=>{
+        return {userName:"Prateek",request: req}
+    }
 });
 
 server.listen({port:4001}).then(({url})=>{
