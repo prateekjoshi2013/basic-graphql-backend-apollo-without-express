@@ -40,7 +40,11 @@ const resolvers={
         users: (parent,args,context)=> {
             console.log(parent)
             console.log(context)
-            return UserList;
+            if(UserList){
+                return {users : UserList}
+            }else{
+                return {message: "Error in fetching list" }
+            }
         },
         user:(parent,args,context,info)=> {
             return UserList.filter(user => user.id == args.id)[0] 
@@ -74,6 +78,14 @@ const resolvers={
         deleteUser:(parent,args)=>{
             UserList.filter(user => user.id==args.id)
             return null
+        }
+    },
+    UsersResult:{
+        __resolveType(obj){
+            if(obj.users){
+                return "UserSuccessfulResult"
+            }
+            return "UsersErrorResult"
         }
     }
 
